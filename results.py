@@ -67,15 +67,14 @@ def main():
             img[markers == mess[i][1]] = [0, 255, 0] #BGR
             
  	# Traverse all the cells once again to prevent any leaks. 
-    # Taking the average of the darkest gray values for eatch diseased cell as described above, treat all cells that have a darker color than the average* pix_threshold as being diseased and marked in red.
-    pix_threshold = 0.7
+    # Taking the average of the darkest gray values for each diseased cell as described above, treat all cells that have a darker color than the average* pix_threshold as being diseased and marked in red.
+    pix_threshold = 0.75
     for i in range(len(mess)):
         if mess[i][2] <= np.array(mess).mean() * pix_threshold:
             img[markers == mess[i][1]] = [0, 0, 255] #BGR
             
     # Map all borders in blue for easy viewing.
     img[markers == -1] = [255, 0, 0]#BGR
-
 
     #Show final results.
     print('Total Number Of Cells:' + str(numbers))
@@ -95,6 +94,7 @@ def main():
     arr = gray.flatten()
     n, bins, patches = plt.hist(arr, bins=256, normed=1, facecolor='green', alpha=0.75)
     plt.show()
+    
 
 if __name__ == '__main__':
     main()

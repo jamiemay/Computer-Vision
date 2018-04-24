@@ -5,7 +5,6 @@ import sys
 sys.setrecursionlimit(1000000)
 cnt = 0
 
-#不明白
 def judge(index, x, y, data):
     #Marking the pixels.
     #
@@ -31,7 +30,6 @@ def ass(data):
             judge(index, i, j, data)
             index += 1
 
-#不明白
 def fill(data, max_index):
     # Label all the cells.
     stack = []
@@ -90,7 +88,6 @@ def main():
     markers[unknown == 255] = 0
     markers = cv2.watershed(img, markers)
     
-	#不明白
     #Differentiate each cell with a position in an array.
     data = sure_fg.tolist()
     data = [[int(i) for i in row] for row in data]
@@ -110,17 +107,18 @@ def main():
     
     # Detecting the cells with higher variance values to find infected cells and marking them.
     sttresh = np.array([i[0] for i in index_var]).max()
+    #Count for the number of infected cells.
     count = 0
     for i in index_var:
         if i[0] > sttresh * 0.4:
             count += 1
-            img[data == i[1]] = [0, 255, 0]
-            
-    #想把这个放进results.py        
+            img[data == i[1]] = [0, 255, 0]#BGR
+
     print ('Total Number Of Cells:' + str(numbers))
     print ('Number of Infected Cells:' + str(count))
     print ('Proportion of Infection:')
     print (float(count) / float(numbers))
+    
     img[markers == -1] = [255, 0, 0]
     cv2.imshow("Malaria Sample", img)
     cv2.waitKey(0)

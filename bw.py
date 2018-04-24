@@ -7,7 +7,7 @@ def count(sure_fg):
 
 def main():
         cv2.namedWindow("win")
-        img = cv2.imread(r'labelled/003.jpg')
+        img = cv2.imread(r'originals/050.jpg')
         rows, cols = img.shape[0], img.shape[1]
         img = cv2.resize(img, (int(cols / 2), int(rows / 2)))
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
